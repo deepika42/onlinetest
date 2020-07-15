@@ -1,0 +1,49 @@
+<h3>Quiz Application</h3>
+<div>
+    <!-- attempt quiz -->
+    <div *ngIf = "!isVisibleButton">
+      <button class="btn btn-outline-primary mb-2 mr-2" (click)="attemptQuiz()">Attempt Quiz</button>
+    </div>
+
+    <div class="jumbotron" [hidden]="!isVisibleButton">
+      <h4>Lets get started</h4>
+      <div class="form-group">
+        <label>Select test:</label>
+        <div class="col-sm-6">
+          <select [(ngModel)]="selectedvalue"  (change)="selectLanguage()">
+        <option *ngFor="let lang of languages" [value]="lang">{{lang}}</option>
+      </select>
+        </div>
+      </div>
+      <div>
+        <ul><b>{{question}}</b></ul>
+          <ul *ngFor="let opt of option">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ngModel (click)="submitAnswer($event,opt)" name="checkinput" #checkinput=ngModel>
+                  {{opt}}    
+                  </label>
+                </div>
+          </ul>
+            <button class="btn btn-dark" (click)="proceed()" *ngIf="i<noOfQuestions-1">Proceed</button>
+
+            <div>
+            <button class="btn btn-success" (click)="getResult(viewResult)">Submit</button>
+          </div>
+      </div>
+    </div>
+    
+    <ng-template #viewResult >
+          <div class="modal-body">
+            <span style="color:blue;">Total Questions : {{noOfQuestions}}</span>
+            <br>
+            <span style="color:red;">Total Questions answered : {{totalQuestions}}</span>
+            <br>
+            <span style="color:green;">Your Result : {{score}}</span>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" (click)="closeModal()">Close</button>
+          </div>
+    </ng-template>
+
+</div>

@@ -1,0 +1,18 @@
+<h4>Login</h4>
+<form (ngSubmit)="checkUser(formdata)" #formdata=ngForm>
+    Email: <input type="email" name="uemail" ngModel required email #uemail=ngModel>
+    <div *ngIf="uemail.invalid">
+        <div *ngIf="uemail.errors.required">
+            Email cannot be empty
+        </div>
+        <div *ngIf="uemail.errors.email">
+            Email is invalid
+        </div>
+    </div>
+    Password: <input type="password" name="pass" ngModel required #pass=ngModel>
+    <div *ngIf ="pass.invalid">
+        Password is required
+    </div>
+    <button class="btn btn-success" [disabled]="formdata.invalid">Submit</button>
+    <a routerLink="/registration" class="btn btn-link">Sign up</a>    
+</form>

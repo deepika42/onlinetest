@@ -1,0 +1,10 @@
+<div>
+  <h2>Welcome</h2>
+  <div *ngIf="!isShow">
+  <nav>
+    <a routerLink="/login" (click)="toggleDisplay()" class="btn_login">Sign in</a>
+  </nav>
+  </div>
+</div>
+<router-outlet></router-outlet>
+
